@@ -15,6 +15,31 @@ public class Pokemon {
 		this.vida = vida;
 		this.ataque = ataque;
 	}
+
+
+	public String getPokemon() {
+		return pokemon;
+	}
+
+
+	public String getHabitat() {
+		return habitat;
+	}
+
+
+	public double getPorcentajeAparicion() {
+		return porcentajeAparicion;
+	}
+
+
+	public int getVida() {
+		return vida;
+	}
+
+
+	public int getAtaque() {
+		return ataque;
+	}
 		
 
 }
