@@ -1,19 +1,19 @@
-package logica2;
+package logica;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import modelo.Gimnasio;
+import modelo.LiderGimnasio;
 import modelo.MiembroAltoMando;
 import modelo.Pokemon;
 
-public class Menu {
+public class SistemaPokemon {
 	public void menuPrincipal() throws FileNotFoundException{
 		Scanner scanner = new Scanner(System.in);
 		ArrayList<Pokemon> pokemons = new ArrayList<>();
-		ArrayList<Gimnasio> gimnasio = new ArrayList<>();
+		ArrayList<LiderGimnasio> gimnasio = new ArrayList<>();
 		ArrayList<MiembroAltoMando> altoMando = new ArrayList<>();
 
 		lectorArchivoPokemon(pokemons);
@@ -138,7 +138,7 @@ public class Menu {
 	}
 
 	
-	private void lectorArchivoGimnasio(ArrayList<Gimnasio> gimnasio, ArrayList<Pokemon> pokemons) throws FileNotFoundException {
+	private void lectorArchivoGimnasio(ArrayList<LiderGimnasio> gimnasio, ArrayList<Pokemon> pokemons) throws FileNotFoundException {
 		Scanner archgym = new Scanner(new File("Gimnasios.txt"));
 
 		while(archgym.hasNextLine()) {
@@ -163,7 +163,7 @@ public class Menu {
 				}
 			}
 
-			Gimnasio gym = new Gimnasio(numeroGym, liderGym, estadoGym, pokemonesGYM);
+			LiderGimnasio gym = new LiderGimnasio(numeroGym, liderGym, estadoGym, pokemonesGYM);
 			gimnasio.add(gym); 
 		}
 

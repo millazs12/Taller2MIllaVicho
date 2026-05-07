@@ -1,24 +1,26 @@
 package modelo;
 
 public class Pokemon {
-	String pokemon ;
-	String habitat;
-	double porcentajeAparicion;
-	int vida;
-	int ataque ;
+	private String nombre;
+	private String habitat;
+	private double porcentajeAparicion;
+	private int stats;
+	private boolean estado;
+	private String tipo;
 	
 	
-	public Pokemon(String pokemon, String habitat, double porcentajeAparicion, int vida, int ataque) {
-		this.pokemon = pokemon;
+	public Pokemon(String nombre, String habitat, double porcentajeAparicion, int stats, String tipo) {
+		this.nombre = nombre;
 		this.habitat = habitat;
 		this.porcentajeAparicion = porcentajeAparicion;
-		this.vida = vida;
-		this.ataque = ataque;
+		this.stats = stats;
+		this.estado = true;
+		this.tipo = tipo;
 	}
 
 
-	public String getPokemon() {
-		return pokemon;
+	public String getNombre() {
+		return nombre;
 	}
 
 
@@ -32,13 +34,22 @@ public class Pokemon {
 	}
 
 
-	public int getVida() {
-		return vida;
+	public int getStats() {
+		return stats;
 	}
 
 
-	public int getAtaque() {
-		return ataque;
+	public boolean getEstado() {
+		return estado;
+	}
+	
+	public String getTipo() {
+		return tipo;
+	}
+	
+	public void setEstado(boolean nuevoEstado) {
+		estado = nuevoEstado;
+		
 	}
 		
 
