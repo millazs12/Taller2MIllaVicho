@@ -14,8 +14,8 @@ public class Habitat {
 
 	}
 	//codigo generico para añadir a lista
-	public void AñadirHabitante(Pokemon elpokemon) {
-		especies.add(elpokemon);
+	public void AñadirHabitante(Pokemon p) {
+		especies.add(new Pokemon(p.getNombre(), p.getHabitat(), p.getPorcentajeAparicion(), p.getStats(), p.getTipo()));
 	}
 	
 	public String getNombreHabitat() {

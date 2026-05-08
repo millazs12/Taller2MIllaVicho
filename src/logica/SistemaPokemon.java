@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import modelo.AltoMando;
+import modelo.Habitat;
 import modelo.LiderGimnasio;
 import modelo.ListaGimnasios;
 import modelo.MiembroAltoMando;
@@ -18,6 +19,9 @@ public class SistemaPokemon {
 		ArrayList<Pokemon> listaPokemones = LeerPokedex();
 		ListaGimnasios Gimnasios = LeerGimnasios(listaPokemones);
 		AltoMando maestros = LeerAltoMando(listaPokemones);
+		ArrayList<Habitat> ListaHabitats = LeerHabitats();
+		asignarHabitat(ListaHabitats, listaPokemones);
+		
 
 		Scanner scanner = new Scanner(System.in);
 		boolean validar = true;
@@ -126,7 +130,7 @@ public class SistemaPokemon {
 			}
 			lector.close();
 		} catch (Exception e) {
-			System.out.println("no se encontro archivo de Gimnasios");
+			System.out.println("no se encontro archivo de Gimnasios Correcto");
 		}
 
 		return Gimnasio;
@@ -163,11 +167,44 @@ public class SistemaPokemon {
 			}
 			lector.close();
 		} catch (Exception e) {
-			System.out.println("no se encontro archivo de Gimnasios");
+			System.out.println("no se encontro archivo de Altos Mandos Correcto");
 		}
 
 		return Maestros;
 		
+	}
+	
+	public ArrayList<Habitat> LeerHabitats() {
+
+		ArrayList<Habitat> ListaHabitats = new ArrayList<>();
+
+		try {
+			Scanner lector = new Scanner(new File("Habitats.txt"));
+			while (lector.hasNextLine()) {
+				String linea = lector.nextLine();
+				
+
+				String nombre = linea;
+
+				Habitat Habitat = new Habitat(nombre);
+				ListaHabitats.add(Habitat);
+			}
+			lector.close();
+		} catch (Exception e) {
+			System.out.println("no se encontro archivo de habitats Correcto");
+		}
+
+		return ListaHabitats;
+	}
+	
+	public void asignarHabitat(ArrayList<Habitat> Lista, ArrayList<Pokemon> Pokemones) {
+		for (Habitat h : Lista) {
+			for (Pokemon p : Pokemones) {
+				if (p.getHabitat().equalsIgnoreCase(h.getNombreHabitat())) {
+					h.AñadirHabitante(p);
+				}
+			}
+		}
 	}
 
 
