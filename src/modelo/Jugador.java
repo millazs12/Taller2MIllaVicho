@@ -55,7 +55,7 @@ public class Jugador {
 	    for (Pokemon p : this.PC) {
 	        p.setEstado(true);
 	    }
-	    System.out.println("Tu equipo y los Pokémon del PC se han recuperado!");
+	    System.out.println("Tu equipo se ha recuperado!");
 	}
 	
 	public void CambiarEquipo(int team,int pc) {
@@ -68,10 +68,9 @@ public class Jugador {
 	        PC.set(pc, pokeEquipo);
 
 	        // para confirmar
-	        System.out.println("¡Cambio exitoso! " + pokePC.getNombre() + " ahora está en tu equipo.");
+	        System.out.println(pokePC.getNombre() + " ha sido agregado a tu equipo!");
 	    } else {
-	        
-	        System.out.println("Error: Índices inválidos. No se pudo realizar el cambio.");
+	    	System.out.println("Opcion invalida.");
 	    }
 	}
 	
@@ -79,12 +78,26 @@ public class Jugador {
 		medallas++;
 	}
 	
-	public void RetarGym(int numero) {
-		System.out.println("placeholder");
+	public void RetarGym(int numero,ArrayList<LiderGimnasio> listaGimnasios) {
+		
+	    if (numero != (this.medallas + 1)) {
+	        System.out.println("No puedes desafiar a este lider todavia. Debes derrotar a los anteriores.");
+	        return;
+	    }
+	    LiderGimnasio lider = listaGimnasios.get(numero - 1);
+
+	    System.out.println("Desafiando a " + lider.getNombre());
+	    
+	    //logica aca
 	}
 	
 	public void DesafiarAltoMando() {
-		System.out.println("placeholder");
+		if (this.medallas < 8) {
+	        System.out.println("Aun no tienes las 8 medallas para entrar a la Liga.");
+	        return;
+	    }
+		System.out.println("Entrando a la Liga Pokemon...");
+		//logica aca
 	}
 
 }
