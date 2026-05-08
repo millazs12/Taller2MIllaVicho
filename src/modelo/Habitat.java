@@ -34,8 +34,7 @@ public class Habitat {
 		for (Pokemon p : especies) {
 			acumulador += p.getPorcentajeAparicion();
 			if (suerte <= acumulador) {
-				return new Pokemon(p.getNombre(), p.getHabitat(), p.getPorcentajeAparicion(), p.getStats(),
-						p.getTipo());
+				return p;
 			}
 		}
 

@@ -1,0 +1,3 @@
+Zarki;0
+Umbreon;Debilitado
+Samurott;Debilitado
