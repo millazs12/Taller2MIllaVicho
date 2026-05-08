@@ -1,26 +1,27 @@
 package modelo;
 
+import java.util.ArrayList;
+
 public class MiembroAltoMando {
-	private int numAltoMando;
-	private String Miembro;
-	private Pokemon[] pokemonesAltoMando;
 
-	public MiembroAltoMando(int numAltoMando, String miembro, Pokemon[] pokemonesAltoMando) {
-		this.numAltoMando = numAltoMando;
-		Miembro = miembro;
-		this.pokemonesAltoMando = pokemonesAltoMando;
+	private String nombre;
+	private ArrayList<Pokemon> equipo;
+
+	public MiembroAltoMando(String nombre) {
+		this.nombre = nombre;
+		this.equipo = new ArrayList<>();
 	}
 
-	public int getNumAltoMando() {
-		return numAltoMando;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public String getMiembro() {
-		return Miembro;
+	public ArrayList<Pokemon> getEquipo() {
+		return equipo;
 	}
-
-	public Pokemon[] getPokemonesAltoMando() {
-		return pokemonesAltoMando;
+	
+	public void añadirEquipo(Pokemon p) {
+		equipo.add(new Pokemon(p.getNombre(), p.getHabitat(), p.getPorcentajeAparicion(), p.getStats(), p.getTipo()));
 	}
 
 }

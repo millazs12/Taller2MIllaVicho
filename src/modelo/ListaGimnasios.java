@@ -13,5 +13,9 @@ public class ListaGimnasios {
 	public void AñadirLider(LiderGimnasio Lider) {
 		lista.add(Lider);
 	}
+	
+	public ArrayList<LiderGimnasio> GetLista() {
+		return lista;
+	}
 
 }
