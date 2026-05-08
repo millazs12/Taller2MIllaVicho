@@ -44,6 +44,7 @@ public class Jugador {
 	
 	public void AñadirEquipo(Pokemon pokemon) {
 		equipo.add(pokemon);
+		numeroEquipo++;
 	}
 	
 	public void CurarEquipo() {
@@ -98,6 +99,30 @@ public class Jugador {
 	    }
 		System.out.println("Entrando a la Liga Pokemon...");
 		//logica aca
+	}
+	
+	public ArrayList<Pokemon> GetEquipo() {
+		return equipo;
+	}
+	
+	public boolean yaTieneAlPokemon(String nombreBuscado) {
+	    // Revisar en el equipo
+	    for (Pokemon p : this.equipo) {
+	        if (p.getNombre().equalsIgnoreCase(nombreBuscado)) {
+	            return true;
+	        }
+	    }
+	    // Revisar en el PC
+	    for (Pokemon p : this.PC) { // Suponiendo que tu PC se llama listaPC
+	        if (p.getNombre().equalsIgnoreCase(nombreBuscado)) {
+	            return true;
+	        }
+	    }
+	    return false; // Si recorrió todo y no lo halló
+	}
+	
+	public ArrayList<Pokemon> GetPC() {
+		return PC;
 	}
 
 }

@@ -41,5 +41,10 @@ public class Habitat {
 
 		return especies.get(especies.size() - 1);
 	}
+	
+	public ArrayList<Pokemon> GetPokemon() {
+		return especies;
+		
+	}
 
 }
