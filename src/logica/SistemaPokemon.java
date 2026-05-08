@@ -48,6 +48,8 @@ public class SistemaPokemon {
 			switch (opcion) {
 			case 1: {
 				Jugador player = Cargarpartida(listaPokemones);
+<<<<<<< HEAD
+=======
 				boolean juegoActual = true;
 				while (juegoActual == true) {
 					System.out.println(player.getNombre() + ", que deseas hacer?");
@@ -146,8 +148,261 @@ public class SistemaPokemon {
 						break;
 					}
 					case 3: {
+					    
+					    if (player.GetEquipo().size() == 0) {
+					        System.out.println("No tienes Pokemon en tu equipo.");
+					    } else if (player.GetPC().size() == 0) {
+					        System.out.println("Tu PC esta vacio. Captura mas Pokemon para realizar cambios.");
+					    } else {
+					       
+					        player.mostrarEquipo();
+					        player.mostrarPC();
+
+					        int indiceEquipo = -1;
+					        int indicePC = -1;
+
+					        
+					        while (true) {
+					            System.out.print("Elige el numero del Pokemon en tu EQUIPO para sacar: ");
+					            try {
+					                indiceEquipo = scanner.nextInt();
+					                scanner.nextLine(); 
+
+					                
+					                if (indiceEquipo >= 1 && indiceEquipo <= player.GetEquipo().size()) {
+					                    break; 
+					                } else {
+					                    System.out.println("Valor invalido. Debe ser entre 1 y " + player.GetEquipo().size());
+					                }
+					            } catch (Exception e) {
+					                System.out.println("Error: Ingrese un numero valido.");
+					                scanner.nextLine(); 
+					            }
+					        }
+
+					     
+					        while (true) {
+					            System.out.print("Elige el numero del Pokemon en tu PC para meter al equipo: ");
+					            try {
+					                indicePC = scanner.nextInt();
+					                scanner.nextLine(); 
+
+					                if (indicePC >= 1 && indicePC <= player.GetPC().size()) {
+					                    break; 
+					                } else {
+					                    System.out.println("Valor invalido. Debe ser entre 1 y " + player.GetPC().size());
+					                }
+					            } catch (Exception e) {
+					                System.out.println("Error: Ingrese un numero valido.");
+					                scanner.nextLine();
+					            }
+					        }
+
+					      
+					        player.CambiarEquipo(indiceEquipo - 1, indicePC - 1);
+					    }
+					    break;
+					}
+						
+					
+					case 4: {
 						System.out.println("a");
 						break;
+					}
+					case 5: {
+						System.out.println("a");
+						break;
+					}
+					case 6: {
+						if (player.getNumeroEquipo() == 0) {
+							System.out.println("No tienes pokemon");
+						} else {
+							player.CurarEquipo();
+						}
+						break;
+					}
+					case 7: {
+						System.out.println("Guardando partida.....");
+						guardarPartida(player, player.getMedallas());
+						System.out.println("Partida guardada!");
+						System.out.println();
+						break;
+					}
+					case 8: {
+						System.out.println("Guardando partida.....");
+						guardarPartida(player, player.getMedallas());
+						System.out.println("Partida guardada!");
+						System.out.println("Nos vemos pronto... entrenador");
+						System.out.println();
+						juegoActual = false;
+						break;
+					}
+					default:
+						System.out.println("eleccion no valida");
+					}
+
+				}
+
+				break;
+			}
+			case 2: {
+				System.out.print("Ingrese su apodo de jugador: ");
+				String nombre = scanner.nextLine();
+				System.out.println();
+				Jugador player = new Jugador(nombre);
+>>>>>>> 4edf4b7881b8952986bb16730ab994b7e769f210
+				boolean juegoActual = true;
+				while (juegoActual == true) {
+					System.out.println(player.getNombre() + ", que deseas hacer?");
+					System.out.println();
+					menuPartida();
+					int opcion2 = 0;
+					try {
+						opcion2 = scanner.nextInt();
+						scanner.nextLine();
+					} catch (Exception e) {
+						System.out.println("Ingrese un valor valido.");
+						System.out.println("");
+						scanner.nextLine();
+						continue;
+					}
+					// =========================
+					switch (opcion2) {
+					case 1: {
+						if (player.getNumeroEquipo() == 0) {
+							System.out.println("No tienes Pokemones en tu equipo, sal a capturar");
+						} else {
+							int contador = 0;
+							for (Pokemon p : player.GetEquipo()) {
+								contador++;
+								System.out.println(contador + ") " + p.getNombre() + "|" + p.getTipo()
+										+ "|Stats totales: " + p.getStats());
+							}
+						}
+						break;
+					}
+					case 2: {
+						int opcionCapturar = 0;
+						// _________________________________________________________________
+						while (opcionCapturar != 7) {
+							System.out.println("Donde deseas ir a explorar?");
+							System.out.println();
+							System.out.println("Zonas disponibles:");
+							System.out.println();
+
+							int contador = 0;
+
+							for (Habitat h : ListaHabitats) {
+								contador++;
+								System.out.println(contador + ") " + h.getNombreHabitat());
+							}
+							System.out.println("7) Volver al menu.");
+							System.out.print("Ingrese Zona: ");
+							try {
+								opcionCapturar = scanner.nextInt();
+								scanner.nextLine();
+
+							} catch (Exception e) {
+								System.out.println("Ingrese un valor valido.");
+								System.out.println("");
+								scanner.nextLine();
+								continue;
+							}
+							switch (opcionCapturar) {
+
+							case 1: {
+								visitarHabitat(0, ListaHabitats, player, scanner);
+								break;
+
+							}
+							case 2: {
+								visitarHabitat(1, ListaHabitats, player, scanner);
+								break;
+							}
+							case 3: {
+								visitarHabitat(2, ListaHabitats, player, scanner);
+								break;
+							}
+							case 4: {
+								visitarHabitat(3, ListaHabitats, player, scanner);
+								break;
+							}
+							case 5: {
+								visitarHabitat(4, ListaHabitats, player, scanner);
+								break;
+							}
+							case 6: {
+								visitarHabitat(5, ListaHabitats, player, scanner);
+								break;
+							}
+							case 7: {
+								System.out.println("Operacion Cancelada");
+								break;
+							}
+							default:
+								System.out.println("Ingrese un valor valido.");
+								System.out.println();
+							}
+
+						}
+						// __________________________________________________________________
+						break;
+					}
+					case 3: {
+					  
+					    if (player.GetEquipo().size() == 0) {
+					        System.out.println("No tienes Pokemon en tu equipo.");
+					    } else if (player.GetPC().size() == 0) {
+					        System.out.println("Tu PC esta vacio. Captura mas Pokemon para realizar cambios.");
+					    } else {
+					      
+					        player.mostrarEquipo();
+					        player.mostrarPC();
+
+					        int indiceEquipo = -1;
+					        int indicePC = -1;
+
+					     
+					        while (true) {
+					            System.out.print("Elige el numero del Pokemon en tu EQUIPO para sacar: ");
+					            try {
+					                indiceEquipo = scanner.nextInt();
+					                scanner.nextLine(); 
+
+					               
+					                if (indiceEquipo >= 1 && indiceEquipo <= player.GetEquipo().size()) {
+					                    break; 
+					                } else {
+					                    System.out.println("Valor invalido. Debe ser entre 1 y " + player.GetEquipo().size());
+					                }
+					            } catch (Exception e) {
+					                System.out.println("Error: Ingrese un numero valido.");
+					                scanner.nextLine();
+					            }
+					        }
+
+					     
+					        while (true) {
+					            System.out.print("Elige el numero del Pokemon en tu PC para meter al equipo: ");
+					            try {
+					                indicePC = scanner.nextInt();
+					                scanner.nextLine(); 
+
+					                if (indicePC >= 1 && indicePC <= player.GetPC().size()) {
+					                    break; 
+					                } else {
+					                    System.out.println("Valor invalido. Debe ser entre 1 y " + player.GetPC().size());
+					                }
+					            } catch (Exception e) {
+					                System.out.println("Error: Ingrese un numero valido.");
+					                scanner.nextLine(); 
+					            }
+					        }
+
+					      
+					        player.CambiarEquipo(indiceEquipo - 1, indicePC - 1);
+					    }
+					    break;
 					}
 					case 4: {
 						System.out.println("a");
@@ -183,6 +438,7 @@ public class SistemaPokemon {
 					}
 					default:
 						System.out.println("eleccion no valida");
+<<<<<<< HEAD
 					}
 
 				}
@@ -329,6 +585,8 @@ public class SistemaPokemon {
 					}
 					default:
 						System.out.println("eleccion no valida");
+=======
+>>>>>>> 4edf4b7881b8952986bb16730ab994b7e769f210
 					}
 
 				}

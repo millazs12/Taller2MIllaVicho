@@ -25,4 +25,35 @@ public class TablaDeTipos {
         {  1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 2.0, 1.0 }  // HADA
     };
     
+    private int transformarTipoAIndice(String tipo) {
+        // El orden de los comentarios en tu matriz: NOR FUE AGU PLA ELE ...
+        String[] ordenTipos = {
+            "NORMAL", "FUEGO", "AGUA", "PLANTA", "ELECTRICO", "HIELO", 
+            "LUCHA", "VENENO", "TIERRA", "VOLADOR", "PSIQUICO", "BICHO", 
+            "ROCA", "FANTASMA", "DRAGON", "ACERO", "SINIESTRO", "HADA"
+        };
+
+        for (int i = 0; i < ordenTipos.length; i++) {
+            if (ordenTipos[i].equalsIgnoreCase(tipo)) {
+                return i;
+            }
+        }
+        return -1; // Tipo no encontrado
+    }
+
+    /**
+     * Método público que el GestorBatalla llamará para saber el daño.
+     */
+    public double obtenerEficacia(String tipoAtacante, String tipoDefensor) {
+        int fila = transformarTipoAIndice(tipoAtacante);
+        int columna = transformarTipoAIndice(tipoDefensor);
+
+        // Validación por si el tipo no existe o hay un error en el String
+        if (fila == -1 || columna == -1) {
+            return 1.0; // Daño neutro por defecto
+        }
+
+        return EFECTIVIDAD[fila][columna];
+    }
+    
 }

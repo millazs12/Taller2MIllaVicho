@@ -1,3 +1,7 @@
+<<<<<<< HEAD
 Zarki;0
 Umbreon;Debilitado
 Samurott;Debilitado
+=======
+3;0
+>>>>>>> 4edf4b7881b8952986bb16730ab994b7e769f210
