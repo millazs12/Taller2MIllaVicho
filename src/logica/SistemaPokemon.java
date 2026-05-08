@@ -423,7 +423,11 @@ public class SistemaPokemon {
 			escritor.write(player.getNombre() + ";" + medallas);
 			escritor.newLine();
 
+<<<<<<< HEAD
 			// 2. Guardar pokemones
+=======
+			// 2. Guardar el equipo
+>>>>>>> e96670b6dabaef6e20bbe463f856830a431ca0ff
 			for (Pokemon p : player.GetEquipo()) {
 				if (p.getEstado() == true) {
 					escritor.write(p.getNombre() + ";Vivo");
@@ -435,6 +439,10 @@ public class SistemaPokemon {
 				
 			}
 
+<<<<<<< HEAD
+=======
+			// 3. Guardar el PC
+>>>>>>> e96670b6dabaef6e20bbe463f856830a431ca0ff
 			for (Pokemon p : player.GetPC()) {
 				if (p.getEstado() == true) {
 					escritor.write(p.getNombre() + ";Vivo");
@@ -445,8 +453,13 @@ public class SistemaPokemon {
 				}
 			}
 
+<<<<<<< HEAD
 			escritor.close();
 			
+=======
+			escritor.close(); // ¡Súper importante para que se guarde de verdad!
+			System.out.println("Partida guardada exitosamente.");
+>>>>>>> e96670b6dabaef6e20bbe463f856830a431ca0ff
 
 		} catch (IOException e) {
 			System.out.println("No se pudo guardar la partida: " + e.getMessage());
