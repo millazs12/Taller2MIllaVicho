@@ -1,0 +1,9 @@
+3232;0
+Poliwrath;Vivo
+Gyarados;Vivo
+Quagsire;Vivo
+Whiscash;Vivo
+Azumarill;Vivo
+Magikarp;Vivo
+Floatzel;Vivo
+Psyduck;Vivo

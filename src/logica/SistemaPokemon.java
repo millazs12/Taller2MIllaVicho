@@ -146,9 +146,64 @@ public class SistemaPokemon {
 						break;
 					}
 					case 3: {
-						System.out.println("a");
-						break;
+					    // 1. Verificamos que haya algo que cambiar
+					    if (player.GetEquipo().size() == 0) {
+					        System.out.println("No tienes Pokemon en tu equipo.");
+					    } else if (player.GetPC().size() == 0) {
+					        System.out.println("Tu PC esta vacio. Captura mas Pokemon para realizar cambios.");
+					    } else {
+					        // 2. Mostramos las listas usando tus nuevos métodos de Jugador
+					        player.mostrarEquipo();
+					        player.mostrarPC();
+
+					        int indiceEquipo = -1;
+					        int indicePC = -1;
+
+					        // --- Bucle para elegir el Pokemon del EQUIPO ---
+					        while (true) {
+					            System.out.print("Elige el numero del Pokemon en tu EQUIPO para sacar: ");
+					            try {
+					                indiceEquipo = scanner.nextInt();
+					                scanner.nextLine(); // Limpiar el buffer
+
+					                // Validamos que el número esté dentro del rango real de la lista
+					                if (indiceEquipo >= 1 && indiceEquipo <= player.GetEquipo().size()) {
+					                    break; // Número válido, salimos del bucle
+					                } else {
+					                    System.out.println("Valor invalido. Debe ser entre 1 y " + player.GetEquipo().size());
+					                }
+					            } catch (Exception e) {
+					                System.out.println("Error: Ingrese un numero valido.");
+					                scanner.nextLine(); // Limpiar el buffer si metió una letra
+					            }
+					        }
+
+					        // --- Bucle para elegir el Pokemon del PC ---
+					        while (true) {
+					            System.out.print("Elige el numero del Pokemon en tu PC para meter al equipo: ");
+					            try {
+					                indicePC = scanner.nextInt();
+					                scanner.nextLine(); // Limpiar el buffer
+
+					                if (indicePC >= 1 && indicePC <= player.GetPC().size()) {
+					                    break; // Número válido
+					                } else {
+					                    System.out.println("Valor invalido. Debe ser entre 1 y " + player.GetPC().size());
+					                }
+					            } catch (Exception e) {
+					                System.out.println("Error: Ingrese un numero valido.");
+					                scanner.nextLine(); // Limpiar el buffer
+					            }
+					        }
+
+					        // 3. Llamamos al método CambiarEquipo. 
+					        // Restamos 1 porque el usuario ve del 1 al 6, pero Java cuenta desde el 0.
+					        player.CambiarEquipo(indiceEquipo - 1, indicePC - 1);
+					    }
+					    break;
 					}
+						
+					
 					case 4: {
 						System.out.println("a");
 						break;
@@ -292,8 +347,61 @@ public class SistemaPokemon {
 						break;
 					}
 					case 3: {
-						System.out.println("a");
-						break;
+					    // 1. Verificamos que haya algo que cambiar
+					    if (player.GetEquipo().size() == 0) {
+					        System.out.println("No tienes Pokemon en tu equipo.");
+					    } else if (player.GetPC().size() == 0) {
+					        System.out.println("Tu PC esta vacio. Captura mas Pokemon para realizar cambios.");
+					    } else {
+					        // 2. Mostramos las listas usando tus nuevos métodos de Jugador
+					        player.mostrarEquipo();
+					        player.mostrarPC();
+
+					        int indiceEquipo = -1;
+					        int indicePC = -1;
+
+					        // --- Bucle para elegir el Pokemon del EQUIPO ---
+					        while (true) {
+					            System.out.print("Elige el numero del Pokemon en tu EQUIPO para sacar: ");
+					            try {
+					                indiceEquipo = scanner.nextInt();
+					                scanner.nextLine(); // Limpiar el buffer
+
+					                // Validamos que el número esté dentro del rango real de la lista
+					                if (indiceEquipo >= 1 && indiceEquipo <= player.GetEquipo().size()) {
+					                    break; // Número válido, salimos del bucle
+					                } else {
+					                    System.out.println("Valor invalido. Debe ser entre 1 y " + player.GetEquipo().size());
+					                }
+					            } catch (Exception e) {
+					                System.out.println("Error: Ingrese un numero valido.");
+					                scanner.nextLine(); // Limpiar el buffer si metió una letra
+					            }
+					        }
+
+					        // --- Bucle para elegir el Pokemon del PC ---
+					        while (true) {
+					            System.out.print("Elige el numero del Pokemon en tu PC para meter al equipo: ");
+					            try {
+					                indicePC = scanner.nextInt();
+					                scanner.nextLine(); // Limpiar el buffer
+
+					                if (indicePC >= 1 && indicePC <= player.GetPC().size()) {
+					                    break; // Número válido
+					                } else {
+					                    System.out.println("Valor invalido. Debe ser entre 1 y " + player.GetPC().size());
+					                }
+					            } catch (Exception e) {
+					                System.out.println("Error: Ingrese un numero valido.");
+					                scanner.nextLine(); // Limpiar el buffer
+					            }
+					        }
+
+					        // 3. Llamamos al método CambiarEquipo. 
+					        // Restamos 1 porque el usuario ve del 1 al 6, pero Java cuenta desde el 0.
+					        player.CambiarEquipo(indiceEquipo - 1, indicePC - 1);
+					    }
+					    break;
 					}
 					case 4: {
 						System.out.println("a");

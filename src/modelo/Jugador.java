@@ -127,6 +127,48 @@ public class Jugador {
 
 	public void SetNombre(String nuevoNombre) {
 		this.nombre = nuevoNombre;
-		
+	}
+
+
+	public void mostrarEquipo() {
+	    System.out.println("--- TU EQUIPO ---");
+	    if (this.equipo.size() == 0) {
+	        System.out.println("No tienes Pokemon en el equipo.");
+	    } else {
+	        int contador = 1;
+	        for (Pokemon p : this.equipo) {
+	           
+	            String textoEstado;
+	            if (p.getEstado() == true) {
+	                textoEstado = "Vivo";
+	            } else {
+	                textoEstado = "Debilitado";
+	            }
+	            
+	            System.out.println(contador + ") " + p.getNombre() + " | Stats: " + p.getStats() + " | Estado: " + textoEstado);
+	            contador++;
+	        }
+	    }
+	}
+
+	public void mostrarPC() {
+	    System.out.println("--- TU PC ---");
+	    if (this.PC.size() == 0) {
+	        System.out.println("El PC esta vacio.");
+	    } else {
+	        int contador = 1;
+	        for (Pokemon p : this.PC) {
+	          
+	            String textoEstado;
+	            if (p.getEstado() == true) {
+	                textoEstado = "Vivo";
+	            } else {
+	                textoEstado = "Debilitado";
+	            }
+	            
+	            System.out.println(contador + ") " + p.getNombre() +" | Stats: " + p.getStats() +  " | Estado: " + textoEstado);
+	            contador++;
+	        }
+	    }
 	}
 }
