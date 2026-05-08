@@ -8,8 +8,8 @@ import logica.SistemaPokemon;
 
 public class Main {
 	public static void main(String[] args)throws FileNotFoundException {
-		SistemaPokemon system = new SistemaPokemon();
-		system.menuPrincipal();
+		SistemaPokemon sistema = new SistemaPokemon();
+		sistema.menuPrincipal();
 		
 	}
 
