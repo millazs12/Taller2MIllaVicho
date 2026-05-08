@@ -125,4 +125,8 @@ public class Jugador {
 		return PC;
 	}
 
+	public void SetNombre(String nuevoNombre) {
+		this.nombre = nuevoNombre;
+		
+	}
 }

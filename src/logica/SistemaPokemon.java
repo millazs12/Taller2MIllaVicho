@@ -47,14 +47,7 @@ public class SistemaPokemon {
 
 			switch (opcion) {
 			case 1: {
-				System.out.println("continuar");
-				break;
-			}
-			case 2: {
-				System.out.print("Ingrese su apodo de jugador: ");
-				String nombre = scanner.nextLine();
-				System.out.println();
-				Jugador player = new Jugador(nombre);
+				Jugador player = Cargarpartida(listaPokemones);
 				boolean juegoActual = true;
 				while (juegoActual == true) {
 					System.out.println(player.getNombre() + ", que deseas hacer?");
@@ -112,8 +105,6 @@ public class SistemaPokemon {
 								scanner.nextLine();
 								continue;
 							}
-							Pokemon salvaje = null;
-							int seCaptura = 0;
 							switch (opcionCapturar) {
 
 							case 1: {
@@ -191,7 +182,153 @@ public class SistemaPokemon {
 						break;
 					}
 					default:
-						throw new IllegalArgumentException("Unexpected value: " + juegoActual);
+						System.out.println("eleccion no valida");
+					}
+
+				}
+
+				break;
+			}
+			case 2: {
+				System.out.print("Ingrese su apodo de jugador: ");
+				String nombre = scanner.nextLine();
+				System.out.println();
+				Jugador player = new Jugador(nombre);
+				boolean juegoActual = true;
+				while (juegoActual == true) {
+					System.out.println(player.getNombre() + ", que deseas hacer?");
+					System.out.println();
+					menuPartida();
+					int opcion2 = 0;
+					try {
+						opcion2 = scanner.nextInt();
+						scanner.nextLine();
+					} catch (Exception e) {
+						System.out.println("Ingrese un valor valido.");
+						System.out.println("");
+						scanner.nextLine();
+						continue;
+					}
+					// =========================
+					switch (opcion2) {
+					case 1: {
+						if (player.getNumeroEquipo() == 0) {
+							System.out.println("No tienes Pokemones en tu equipo, sal a capturar");
+						} else {
+							int contador = 0;
+							for (Pokemon p : player.GetEquipo()) {
+								contador++;
+								System.out.println(contador + ") " + p.getNombre() + "|" + p.getTipo()
+										+ "|Stats totales: " + p.getStats());
+							}
+						}
+						break;
+					}
+					case 2: {
+						int opcionCapturar = 0;
+						// _________________________________________________________________
+						while (opcionCapturar != 7) {
+							System.out.println("Donde deseas ir a explorar?");
+							System.out.println();
+							System.out.println("Zonas disponibles:");
+							System.out.println();
+
+							int contador = 0;
+
+							for (Habitat h : ListaHabitats) {
+								contador++;
+								System.out.println(contador + ") " + h.getNombreHabitat());
+							}
+							System.out.println("7) Volver al menu.");
+							System.out.print("Ingrese Zona: ");
+							try {
+								opcionCapturar = scanner.nextInt();
+								scanner.nextLine();
+
+							} catch (Exception e) {
+								System.out.println("Ingrese un valor valido.");
+								System.out.println("");
+								scanner.nextLine();
+								continue;
+							}
+							switch (opcionCapturar) {
+
+							case 1: {
+								visitarHabitat(0, ListaHabitats, player, scanner);
+								break;
+
+							}
+							case 2: {
+								visitarHabitat(1, ListaHabitats, player, scanner);
+								break;
+							}
+							case 3: {
+								visitarHabitat(2, ListaHabitats, player, scanner);
+								break;
+							}
+							case 4: {
+								visitarHabitat(3, ListaHabitats, player, scanner);
+								break;
+							}
+							case 5: {
+								visitarHabitat(4, ListaHabitats, player, scanner);
+								break;
+							}
+							case 6: {
+								visitarHabitat(5, ListaHabitats, player, scanner);
+								break;
+							}
+							case 7: {
+								System.out.println("Operacion Cancelada");
+								break;
+							}
+							default:
+								System.out.println("Ingrese un valor valido.");
+								System.out.println();
+							}
+
+						}
+						// __________________________________________________________________
+						break;
+					}
+					case 3: {
+						System.out.println("a");
+						break;
+					}
+					case 4: {
+						System.out.println("a");
+						break;
+					}
+					case 5: {
+						System.out.println("a");
+						break;
+					}
+					case 6: {
+						if (player.getNumeroEquipo() == 0) {
+							System.out.println("No tienes pokemon");
+						} else {
+							player.CurarEquipo();
+						}
+						break;
+					}
+					case 7: {
+						System.out.println("Guardando partida.....");
+						guardarPartida(player, player.getMedallas());
+						System.out.println("Partida guardada!");
+						System.out.println();
+						break;
+					}
+					case 8: {
+						System.out.println("Guardando partida.....");
+						guardarPartida(player, player.getMedallas());
+						System.out.println("Partida guardada!");
+						System.out.println("Nos vemos pronto... entrenador");
+						System.out.println();
+						juegoActual = false;
+						break;
+					}
+					default:
+						System.out.println("eleccion no valida");
 					}
 
 				}
@@ -352,6 +489,55 @@ public class SistemaPokemon {
 			}
 		}
 	}
+	
+	public Jugador Cargarpartida(ArrayList<Pokemon> listaPokemones) {
+		
+		Jugador player = new Jugador(null);
+		
+		try {
+			Scanner lector = new Scanner(new File("Registros.txt"));
+			String linea = lector.nextLine();
+			String[] partes = linea.split(";");
+			int medallas = Integer.parseInt(partes[1]);
+			player.SetNombre(partes[0]);
+			player.setMedallas(medallas);
+
+			while (lector.hasNextLine()) {
+				linea = lector.nextLine();
+				partes = linea.split(";");
+				
+
+				String pokemonLeido = partes[0];
+				boolean estadoCargado = Boolean.parseBoolean(partes[1]);
+				
+				for (Pokemon p: listaPokemones) {
+					if (p.getNombre().equalsIgnoreCase(pokemonLeido)) {
+						if (player.yaTieneAlPokemon(p.getNombre())) {
+							System.out.print("");
+						} else {
+							// Lógica normal de captura
+							if (player.getNumeroEquipo() < 6) {
+								player.AñadirEquipo(p);
+								p.setEstado(estadoCargado);
+							} else {
+								player.AñadirPC(p);
+								p.setEstado(estadoCargado);
+							}
+							break;
+						}
+						
+					}
+				}
+				
+			}
+			lector.close();
+		} catch (Exception e) {
+			System.out.println("no se encontraron datos de guardado");
+		}
+
+		return player;
+		
+	}
 
 	// ===============================================================================================================
 
@@ -423,11 +609,8 @@ public class SistemaPokemon {
 			escritor.write(player.getNombre() + ";" + medallas);
 			escritor.newLine();
 
-<<<<<<< HEAD
-			// 2. Guardar pokemones
-=======
+
 			// 2. Guardar el equipo
->>>>>>> e96670b6dabaef6e20bbe463f856830a431ca0ff
 			for (Pokemon p : player.GetEquipo()) {
 				if (p.getEstado() == true) {
 					escritor.write(p.getNombre() + ";Vivo");
@@ -439,10 +622,8 @@ public class SistemaPokemon {
 				
 			}
 
-<<<<<<< HEAD
-=======
+
 			// 3. Guardar el PC
->>>>>>> e96670b6dabaef6e20bbe463f856830a431ca0ff
 			for (Pokemon p : player.GetPC()) {
 				if (p.getEstado() == true) {
 					escritor.write(p.getNombre() + ";Vivo");
@@ -453,13 +634,8 @@ public class SistemaPokemon {
 				}
 			}
 
-<<<<<<< HEAD
+
 			escritor.close();
-			
-=======
-			escritor.close(); // ¡Súper importante para que se guarde de verdad!
-			System.out.println("Partida guardada exitosamente.");
->>>>>>> e96670b6dabaef6e20bbe463f856830a431ca0ff
 
 		} catch (IOException e) {
 			System.out.println("No se pudo guardar la partida: " + e.getMessage());
