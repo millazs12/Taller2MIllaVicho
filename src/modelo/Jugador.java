@@ -47,7 +47,15 @@ public class Jugador {
 	}
 	
 	public void CurarEquipo() {
-		System.out.println("placeholder");
+		//para equipo cura a todos
+		for (Pokemon p : this.equipo) {
+	        p.setEstado(true); 
+	    }
+	    //para pc cura a PC
+	    for (Pokemon p : this.PC) {
+	        p.setEstado(true);
+	    }
+	    System.out.println("Tu equipo y los Pokémon del PC se han recuperado!");//no se si se pone XD
 	}
 	
 	public void CambiarEquipo(int team,int pc) {
