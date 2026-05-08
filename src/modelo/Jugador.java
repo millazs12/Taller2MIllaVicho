@@ -55,11 +55,24 @@ public class Jugador {
 	    for (Pokemon p : this.PC) {
 	        p.setEstado(true);
 	    }
-	    System.out.println("Tu equipo y los Pokémon del PC se han recuperado!");//no se si se pone XD
+	    System.out.println("Tu equipo y los Pokémon del PC se han recuperado!");
 	}
 	
 	public void CambiarEquipo(int team,int pc) {
-		System.out.println("placeholder");
+		if (team >= 0 && team < equipo.size() && pc >= 0 && pc < PC.size()) {
+	        
+	        Pokemon pokeEquipo = equipo.get(team);
+	        Pokemon pokePC = PC.get(pc);
+
+	        equipo.set(team, pokePC);
+	        PC.set(pc, pokeEquipo);
+
+	        // para confirmar
+	        System.out.println("¡Cambio exitoso! " + pokePC.getNombre() + " ahora está en tu equipo.");
+	    } else {
+	        
+	        System.out.println("Error: Índices inválidos. No se pudo realizar el cambio.");
+	    }
 	}
 	
 	public void GanarMedalla() {

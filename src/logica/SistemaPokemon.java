@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import modelo.LiderGimnasio;
+import modelo.ListaGimnasios;
 import modelo.Pokemon;
 
 public class SistemaPokemon {
@@ -12,7 +14,7 @@ public class SistemaPokemon {
 
 		// lectura de archivos base completa
 		ArrayList<Pokemon> listaPokemones = LeerPokedex();
-		
+		ListaGimnasios Gimnasios = LeerGimnasios(listaPokemones);
 
 		Scanner scanner = new Scanner(System.in);
 		boolean validar = true;
@@ -58,11 +60,10 @@ public class SistemaPokemon {
 
 	}
 
-
 	public ArrayList<Pokemon> LeerPokedex() {
-		
+
 		ArrayList<Pokemon> listaPokemones = new ArrayList<>();
-		
+
 		try {
 			Scanner lector = new Scanner(new File("Pokedex.txt"));
 			while (lector.hasNextLine()) {
@@ -72,18 +73,58 @@ public class SistemaPokemon {
 				String nombre = partes[0];
 				String habitat = partes[1];
 				double porcentajeAparicion = Double.parseDouble(partes[2]);
-				int stats = Integer.parseInt(partes[3]) + Integer.parseInt(partes[4]) + Integer.parseInt(partes[5]) +Integer.parseInt(partes[6]) +Integer.parseInt(partes[7]) + Integer.parseInt(partes[8]);
+				int stats = Integer.parseInt(partes[3]) + Integer.parseInt(partes[4]) + Integer.parseInt(partes[5])
+						+ Integer.parseInt(partes[6]) + Integer.parseInt(partes[7]) + Integer.parseInt(partes[8]);
 				String tipo = partes[9];
-				
+
 				Pokemon poke = new Pokemon(nombre, habitat, porcentajeAparicion, stats, tipo);
 				listaPokemones.add(poke);
 			}
 			lector.close();
 		} catch (Exception e) {
-			System.out.println("aydua");
+			System.out.println("no se encontro archivo de Pokedex");
 		}
-		
+
 		return listaPokemones;
 	}
-		
-}
+
+	public ListaGimnasios LeerGimnasios(ArrayList<Pokemon> Pokemones) {
+
+		ListaGimnasios Gimnasio = new ListaGimnasios();
+
+		try {
+			Scanner lector = new Scanner(new File("Gimnasios.txt"));
+			while (lector.hasNextLine()) {
+				String linea = lector.nextLine();
+				String[] partes = linea.split(";");
+
+				int numero = Integer.parseInt(partes[0]);
+				String nombre = partes[1];
+				
+				LiderGimnasio lider = new LiderGimnasio(numero, nombre);
+				
+				for (int i = 4; i < partes.length; i++) {
+			        String nombrePokeBuscado = partes[i];
+			        
+			        // Buscamos el objeto Pokémon de la lista
+			        for (Pokemon p : Pokemones) {
+			            if (p.getNombre().equalsIgnoreCase(nombrePokeBuscado)) {
+			                lider.añadirEquipo(p);
+			                break; // encontrado
+			            }
+			        }
+			    }
+			    Gimnasio.AñadirLider(lider);
+			
+			}
+			lector.close();
+		} catch (Exception e) {
+			System.out.println("no se encontro archivo de Gimnasios");
+		}
+
+		return Gimnasio;
+
+	}
+
+}		
+
