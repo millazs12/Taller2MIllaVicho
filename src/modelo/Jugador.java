@@ -127,11 +127,6 @@ public class Jugador {
 
 	public void SetNombre(String nuevoNombre) {
 		this.nombre = nuevoNombre;
-<<<<<<< HEAD
-		
-	}
-}
-=======
 	}
 
 
@@ -176,5 +171,13 @@ public class Jugador {
 	        }
 	    }
 	}
+	
+	public Pokemon getPokemonActivo() {
+	    for (Pokemon p : this.equipo) {
+	        if (p.getEstado() == true) {
+	            return p;
+	        }
+	    }
+	    return null;
+	}
 }
->>>>>>> 4edf4b7881b8952986bb16730ab994b7e769f210

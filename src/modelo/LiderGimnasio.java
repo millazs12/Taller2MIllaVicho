@@ -35,5 +35,16 @@ public class LiderGimnasio {
 		equipoGym.add(new Pokemon(p.getNombre(), p.getHabitat(), p.getPorcentajeAparicion(), p.getStats(), p.getTipo()));
 
 	}
+	
+	public Pokemon getPokemonActivo() {
+	    for (Pokemon p : equipoGym) {
+	        if (p.getEstado() == true) {
+	            return p;
+	        }
+	    }
+	    return null;
+	}
 
 }
+
+

@@ -27,18 +27,9 @@ public class Habitat {
         if (especies == null || especies.isEmpty())
             return null;
 
-<<<<<<< HEAD
-		for (Pokemon p : especies) {
-			acumulador += p.getPorcentajeAparicion();
-			if (suerte <= acumulador) {
-				return p;
-			}
-		}
-=======
         Random rnd = new Random();
         double suerte = rnd.nextDouble(); // Número entre 0.0 y 1.0
         double acumulador = 0.0;
->>>>>>> 4edf4b7881b8952986bb16730ab994b7e769f210
 
         for (Pokemon p : especies) {
             acumulador += p.getPorcentajeAparicion();

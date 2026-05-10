@@ -14,4 +14,8 @@ private ArrayList<MiembroAltoMando> miembros;
 		miembros.add(miembro);
 	}
 
+	public ArrayList<MiembroAltoMando> getMiembros() {
+		return miembros;
+	}
+
 }
